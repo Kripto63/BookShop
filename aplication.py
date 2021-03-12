@@ -1,5 +1,6 @@
 """Create route URL"""
 from flask import Flask
+from flask import url_for
 
 app = Flask(__name__)
 
@@ -15,8 +16,11 @@ def show_book(book_id) -> int:
 
 @app.route('/about/')
 def about()-> str:
-    """About information the site"""
+    """Show about information the site"""
     return 'it\'s site Book shop'
 
+with app.test_request_context():
+    url_for('static', filename='style.css')
+
 if __name__ == "__main__":
-    pass
+    app.run(debug=True)
